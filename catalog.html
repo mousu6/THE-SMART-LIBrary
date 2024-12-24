@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image-removebg-preview.png">
+    <title>Book Catalog</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+            background-color: #161616;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px #000;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav ul li {
+            display: inline;
+        }
+        
+        nav ul li a {
+            color: #76e1ff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #242424;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff4dda;
+            padding-left: 20px;
+        }
+        
+        .catalog-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .book-card {
+            background-color: #161616;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            width: 220px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .book-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #76e1ff;
+        }
+        
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 2px solid #ff4dda;
+        }
+        
+        .book-card h2 {
+            font-size: 1.3em;
+            margin: 10px 0 5px;
+            color: #76e1ff;
+        }
+        
+        .book-card p {
+            font-size: 1em;
+            color: #aaaaaa;
+            margin-bottom: 10px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff4dda;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">My Catalog</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#catalog-container">Catalog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+
+
+    <h1>Book Catalog</h1>
+
+
+    <div class="catalog-container" id="catalog-container">
+
+    </div>
+
+    <script>
+        const books = [{
+            title: "The Art of War",
+            author: "Sun Tzu",
+            image: "THE ART OF WAR.jpg",
+            link: "book.html?title=The%20Art%20of%20War"
+        }, {
+            title: "1984",
+            author: "George Orwell",
+            image: "1984.jpg",
+            link: "book.html?title=1984"
+        }, {
+            title: "To Kill a Mockingbird",
+            author: "Harper Lee",
+            image: "to kill a mockingbird.jpg",
+            link: "book.html?title=To%20Kill%20a%20Mockingbird"
+        }, {
+            title: "The Great Gatsby",
+            author: "F. Scott Fitzgerald",
+            image: "the great gatsby.jpg",
+            link: "book.html?title=The%20Great%20Gatsby"
+        }, {
+            title: "ألف ليلة وليلة",
+            author: "Anonymous",
+            image: "one-thousand-and-one-nights.jpg",
+            link: "book.html?title=" + encodeURIComponent("ألف ليلة وليلة")
+        }, {
+            title: "رواية عزازيل",
+            author: "يوسف زيدان",
+            image: "azazel.jpg",
+            link: "book.html?title=" + encodeURIComponent("رواية عزازيل")
+        }, {
+            title: "Pride and Prejudice",
+            author: "Jane Austen",
+            image: "pride-and-prejudice.jpg",
+            link: "book.html?title=Pride%20and%20Prejudice"
+        }, {
+            title: "Moby Dick",
+            author: "Herman Melville",
+            image: "moby-dick.jpg",
+            link: "book.html?title=Moby%20Dick"
+        }];
+
+        const catalogContainer = document.getElementById("catalog-container");
+
+        books.forEach(book => {
+            const bookCard = document.createElement("a");
+            bookCard.className = "book-card";
+            bookCard.href = book.link;
+
+            bookCard.innerHTML = `
+                <img src="${book.image}" alt="${book.title}">
+                <h2>${book.title}</h2>
+                <p>by ${book.author}</p>
+            `;
+
+            catalogContainer.appendChild(bookCard);
+        });
+    </script>
+
+</body>
+
+</html>
