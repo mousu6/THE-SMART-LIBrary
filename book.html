@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link rel="icon" href="image-removebg-preview.png">
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .back-arrow {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5em;
+            text-decoration: none;
+            color: #ff4dda;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff4dda;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        
+        .back-arrow:hover {
+            background-color: rgba(255, 77, 218, 0.8);
+        }
+        
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .book-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .book-header img {
+            width: 200px;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #76e1ff;
+        }
+        
+        .book-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        
+        .book-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(50%);
+        }
+        
+        .description {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #76e1ff;
+        }
+        
+        .youtube-video {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .buy-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .buy-button a {
+            text-decoration: none;
+            background-color: #ff4dda;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-button a:hover {
+            background-color: #ff67a7;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="catalog.html" class="back-arrow" title="Go Back">←</a>
+
+    <div class="book-banner">
+        <img id="book-banner-image" src="" alt="Banner Image">
+    </div>
+
+    <div class="container">
+        <div class="book-header">
+            <img id="book-image" src="" alt="Book Image">
+            <div>
+                <h1 id="book-title"></h1>
+                <h3 id="book-author"></h3>
+            </div>
+        </div>
+        <div class="description" id="book-description"></div>
+        <div class="youtube-video">
+            <iframe id="book-video" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="buy-button">
+            <a id="amazon-link" href="" target="_blank">Buy on Amazon</a>
+        </div>
+    </div>
+
+    <script>
+        const books = {
+            "The Art of War": {
+                author: "Sun Tzu",
+                image: "THE ART OF WAR.jpg",
+                banner: "samuel-hirszenberg.jpg",
+                description: "An ancient Chinese military treatise offering timeless wisdom on strategy and leadership.",
+                video: "https://www.youtube.com/embed/M5QGkOGZubQ",
+                amazon: "https://www.amazon.com/s?k=the+art+of+war"
+            },
+            "1984": {
+                author: "George Orwell",
+                image: "1984.jpg",
+                banner: "1984-banner4.jpg",
+                description: "A dystopian novel exploring a totalitarian regime's impact on society and individual freedom.",
+                video: "https://www.youtube.com/watch?v=1M-pVgTH4Ug",
+                amazon: "https://www.amazon.com/s?k=1984+book"
+            },
+            "To Kill a Mockingbird": {
+                author: "Harper Lee",
+                image: "to kill a mockingbird.jpg",
+                banner: "showpage-mockingbird.jpg",
+                description: "A story of racial injustice and moral growth set in the American South during the 1930s.",
+                video: "https://www.youtube.com/watch?v=uQnVjkT5MpQ",
+                amazon: "https://www.amazon.com/s?k=to+kill+a+mockingbird"
+            },
+            "The Great Gatsby": {
+                author: "F. Scott Fitzgerald",
+                image: "the great gatsby.jpg",
+                banner: "book-cover-the-great-gatsby-quot.jpg",
+                description: "A classic American novel exploring themes of wealth, love, and the pursuit of the American Dream.",
+                video: "https://www.youtube.com/embed/e6Iu29TNfkM",
+                amazon: "https://www.amazon.com/s?k=the+great+gatsby"
+            },
+            "ألف ليلة وليلة": {
+                author: "Anonymous",
+                image: "one-thousand-and-one-nights.jpg",
+                banner: "image.jpg",
+                description: "A collection of Middle Eastern folktales compiled in Arabic during the Islamic Golden Age.",
+                video: "https://www.youtube.com/embed/Z7mVTx8ziig",
+                amazon: "https://www.amazon.com/s?k=one+thousand+and+one+nights"
+            },
+            "رواية عزازيل": {
+                author: "يوسف زيدان",
+                image: "azazel.jpg",
+                banner: "azazel-banner.jpg",
+                description: "A novel set in the 5th century, exploring themes of identity, faith, and love in a turbulent world.",
+                video: "https://www.youtube.com/embed/WgxOn7v_zNM", // Discussion of "Azazel"
+                amazon: "https://www.amazon.com/s?k=azazel+novel"
+            },
+            "Pride and Prejudice": {
+                author: "Jane Austen",
+                image: "pride-and-prejudice.jpg",
+                banner: "pride-and-prejudice-banner.jpg",
+                description: "A romantic novel that charts the emotional development of Elizabeth Bennet.",
+                video: "https://www.youtube.com/embed/lZzIs5xCckA",
+                amazon: "https://www.amazon.com/s?k=pride+and+prejudice"
+            },
+            "Moby Dick": {
+                author: "Herman Melville",
+                image: "moby-dick.jpg",
+                banner: "moby-dick-banner.jpg",
+                description: "The saga of Captain Ahab's obsessive quest to avenge the whale that 'reaped' his leg.",
+                video: "https://www.youtube.com/embed/NbEbbD4d_-w",
+                amazon: "https://www.amazon.com/s?k=moby+dick"
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+
+        if (title && books[title]) {
+            const book = books[title];
+            document.getElementById('book-title').textContent = title;
+            document.getElementById('book-author').textContent = `Author: ${book.author}`;
+            document.getElementById('book-image').src = book.image;
+            document.getElementById('book-banner-image').src = book.banner;
+            document.getElementById('book-description').textContent = book.description;
+            document.getElementById('book-video').src = book.video;
+            document.getElementById('amazon-link').href = book.amazon;
+        } else {
+            document.body.innerHTML = '<p style="text-align: center; color: #ff4dda;">Book not found. Please go back and try again.</p>';
+        }
+
+
+        window.addEventListener('scroll', () => {
+            const banner = document.querySelector('.book-banner');
+            const scrollY = window.scrollY;
+            const maxOpacity = 0.7;
+            banner.style.opacity = Math.max(maxOpacity - scrollY / 400, 0);
+        });
+    </script>
+
+</body>
+
+</html>
