@@ -86,3 +86,54 @@ footer {
     background-color: #1f1f1f;
     color: #76e1ff;
 }
+                      /* LOGIN PAGE */
+
+#login-form{
+    padding:20px;
+    width:300px;
+    height:400px;
+    outline: none;
+    border:none;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #ff4dda;/* 0 0 20px #ff4dda ; */
+}
+#login-email , #login-password{
+    background-color: transparent;
+    outline: none;
+    border-top:2px solid #0f0f0f;
+    border-left:2px solid #0f0f0f;
+    border-right:2px solid #0f0f0f;
+    border-bottom:2px solid #ff4dda ;
+    width: 250px;
+    height:30px;
+    color:azure;
+
+}
+.button-login{
+    outline: none;
+    width:250px;
+    margin :20px ;
+    box-shadow: 0 0 10px #ff4dda, 0 0 20px #ff4dda;
+}
+.button-login:hover{
+    scale: 1.05;
+
+}
+.button-login:active{
+    scale: 0.95;
+
+}
+.helloo{
+    display: flex;
+    font-family: "Playwrite GB S", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size:150px ;
+    margin: 0;
+    position :absolute;
+    right: 200px;
+    top:0;
+    color:#ff4dda;
+    text-shadow: 5px 6px 5px white;
+}
